@@ -3,6 +3,7 @@ import { UserRegisterDto } from "./dto/user.register.dto";
 import { User } from "./user.model";
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt'
+import { UserServiceDto } from "./dto/user.service.dto";
 
 
 @Injectable()
@@ -12,7 +13,7 @@ export class UserService {
         private userModel:typeof User
     ){}
     
-    async register(registerData:UserRegisterDto){    // method  to register a new user  
+    async register(registerData:UserRegisterDto):Promise<UserServiceDto>{    // method  to register a new user  
         try {
          const isUserExist = await this.userModel.findOne({where:{email:registerData.email}}) //checking if the user is already existed by email
          if(isUserExist){
