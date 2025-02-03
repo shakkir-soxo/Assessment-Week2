@@ -5,15 +5,15 @@ import { LoginUserDto } from './login.user.dto';
 @Controller('auth')
 export class AuthController {
    constructor(
-      private authService:AuthService
+      private authService:AuthService    // Injecting auth service 
    ) {}
 
-   @Post('login')
-   async login(@Body() login:LoginUserDto){
-      const token = await this.authService.login(login)
+   @Post('login')                       // login route /auth/login
+   async login(@Body() login:LoginUserDto){         // Accessing Login data from the request body
+      const token = await this.authService.login(login)   // Passing login data to service for handle login and genrate token
       return {
-        message:'Login sucessfull',
-        token
+        message:'Login sucessfull',             // Success message
+        token                                  // Returning token
       }
    }
 }

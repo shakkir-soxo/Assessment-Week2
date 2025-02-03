@@ -6,11 +6,12 @@ import { User } from './user.model';
 
 @Module({
     imports:[
-        SequelizeModule.forFeature([User])
+        SequelizeModule.forFeature([User])     // register the user module to be used with sequelize for database intercations
     ],
-    providers:[UserService],
+    providers:[UserService],        
     controllers:[UserController],
     exports:[UserService]
+   
    
 })
 
